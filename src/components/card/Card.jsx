@@ -1,5 +1,7 @@
 import styles from "./Card.module.sass";
 import Image from "next/image";
+import Button, { IconTypes } from "../button/Button";
+
 const Card = () => {
   return (
     <div className={styles.card}>
@@ -25,6 +27,9 @@ const Card = () => {
           efficitur, nunc ut bibendum facilisis, nisi nisl aliquet nunc, eget
           tincidunt nisi nisl eget nunc.
         </p>
+        <Button href="#" icon={IconTypes.ARROW_RIGHT}>
+          Read More
+        </Button>
       </div>
     </div>
   );
