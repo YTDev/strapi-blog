@@ -2,7 +2,7 @@ import styles from "./Card.module.sass";
 import Image from "next/image";
 import Button, { IconTypes } from "../button/Button";
 import ConditionalRenderer from "../ConditionalRenderer";
-import { getCategoryColor } from "@/helpers/categoryColors";
+import getCategoryColor from "@/helpers/categoryColors";
 const Card = (props) => {
   return (
     <div className={`${styles.card_wrap} ${props.className || ""}`}>
