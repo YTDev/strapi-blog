@@ -10,8 +10,8 @@ const Card = (props) => {
         <div className={styles.card_imageWrap}>
           <div className={styles.card_image}>
             <Image
-              src="/thumb-featured-article.jpg"
-              alt="hero"
+              src={props.imgSrc}
+              alt={props.imgAlt}
               fill={true}
               className={styles.card_image}
             />
