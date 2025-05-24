@@ -1,20 +1,7 @@
 import Card from "@/components/card/Card";
 import { IconTypes } from "@/components/button/Button";
 import config from "@/config";
-const fetchBlogs = async (params) => {
-  const reqOptions = {
-    headers: {
-      Authorization: `Bearer ${process.env.API_TOKEN}`,
-    },
-  };
-  const request = await fetch(
-    `${config.api}/api/blogs?populate=*&${params}`,
-    reqOptions
-  );
-  const response = await request.json();
-  // console.log(`${config.api}/api/blogs?populate=*&${params}`);
-  return response;
-};
+import fetchBlogs from "@/helpers/fetch-blogs";
 
 const Home = async () => {
   const [featuredBlogs, blogs] = await Promise.all([
@@ -40,42 +27,20 @@ const Home = async () => {
       ))}
 
       <div className="row">
-        <div className="col col_4 m-mw-100">
-          <Card
-            label="Tech News"
-            title="Lorem ipsum dolor sit amet, consectetur."
-            summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            efficitur, nunc ut bibendum facilisis, nisi nisl aliquet nunc, eget
-            tincidunt nisi nisl eget nunc."
-            href="#"
-            btnIcon={IconTypes.ARROW_RIGHT}
-            className="mb-30"
-          />
-        </div>
-        <div className="col col_4 m-mw-100">
-          <Card
-            label="Product Reviews"
-            title="Lorem ipsum dolor sit amet, consectetur."
-            summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            efficitur, nunc ut bibendum facilisis, nisi nisl aliquet nunc, eget
-            tincidunt nisi nisl eget nunc."
-            href="#"
-            btnIcon={IconTypes.ARROW_RIGHT}
-            className="mb-30"
-          />
-        </div>
-        <div className="col col_4 m-mw-100">
-          <Card
-            label="Industry Insights"
-            title="Lorem ipsum dolor sit amet, consectetur."
-            summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            efficitur, nunc ut bibendum facilisis, nisi nisl aliquet nunc, eget
-            tincidunt nisi nisl eget nunc."
-            href="#"
-            btnIcon={IconTypes.ARROW_RIGHT}
-            className="mb-30"
-          />
-        </div>
+        {blogs.data.map((blog) => (
+          <div className="col col_4 m-mw-100" key={blog.id}>
+            <Card
+              imgSrc={`${config.api}${blog.Thumbnail?.url}`}
+              imgAlt="Featured img"
+              label={blog.Category}
+              title={blog.Title}
+              summary={blog.Summary}
+              href={`/${blog.slug}`}
+              btnIcon={IconTypes.ARROW_RIGHT}
+              className="mb-30"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
