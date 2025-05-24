@@ -40,4 +40,12 @@ const BlogDetails = async (props) => {
   );
 };
 
+export async function generateStaticParams() {
+  const blogs = await fetchBlogs();
+
+  return blogs.data.map((blog) => ({
+    slug: blog.slug,
+  }));
+}
+
 export default BlogDetails;
