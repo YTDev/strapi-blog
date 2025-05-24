@@ -18,8 +18,8 @@ const fetchBlogs = async (params) => {
 
 const Home = async () => {
   const [featuredBlogs, blogs] = await Promise.all([
-    await fetchBlogs("filters[IsFeatured][$eq]=true"),
-    await fetchBlogs("filters[IsFeatured][$eq]=false"),
+    fetchBlogs("filters[IsFeatured][$eq]=true"),
+    fetchBlogs("filters[IsFeatured][$eq]=false"),
   ]);
   // console.log("featuredBlogs.data", featuredBlogs.data);
 
