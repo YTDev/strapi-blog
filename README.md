@@ -24,3 +24,33 @@ This pattern allows for a clean, intuitive API when using the components:
     Click here < Button.Icon IconType = "ARROW_RIGHT" />
 </ Button >
 ````
+
+## Resources
+
+- Tutorial Video: [Build a Blog with Next.js and Strapi](https://www.youtube.com/watch?v=NNWX2flw5mg&t=1332s)
+- Related Strapi CMS Repository: [starpi-blog-cms-demo](https://github.com/YTDev/starpi-blog-cms-demo)
+
+## generateStaticParams()
+
+### Core Purpose:
+
+- Used in Next.js for Static Site Generation (SSG)
+
+### When to Use:
+
+- When you have dynamic routes (`[slug].js`, `[id].js` etc.)
+
+### Performance Benefits:
+
+- Pages are pre-rendered as static HTML
+
+### Implementation:
+
+```javascript
+// Must be async
+// Must return array of objects matching route params
+// Example for [slug].js:
+export async function generateStaticParams() {
+  return [{ slug: "post1" }, { slug: "post2" }];
+}
+```
